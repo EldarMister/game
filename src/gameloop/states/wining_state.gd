@@ -31,7 +31,7 @@ func enter_async() -> void:
 	
 	winning_audio_player.smooth_duration = 4.0
 	winning_audio_player.smooth_play()
-	await pause(1.0)
+	await pause(2.0)
 	dealer.quit();
 	await pause(0.8)
 	switch_audio_player.play()
@@ -42,7 +42,7 @@ func enter_async() -> void:
 	await pause(0.05)
 	player_hud.show_curtain(0.05)
 	await pause(0.3)
-	player_hud.show_statistic(2.0)
+	player_hud.show_statistic(3.0)
 	player_hud.statistic_panel.retry_pressed.connect(_on_reload)
 	player_hud.statistic_panel.home_pressed.connect(_on_home)
 

@@ -1,38 +1,63 @@
-<p align="center">
-  <img src="./src/icon.png" />
-</p>
+# ONE SHOT
 
-<p align="left">
-  <i>Refusal is not an option.</i>
-</p>
+Created by ELDAR STUDIO
 
+## Overview
+ONE SHOT is a dark, atmospheric 3D duel where every round hinges on a single shared revolver. The core experience is a tense sequence of choices: who takes the shot, what the outcome means, and how far the player can push their luck. The game is built to feel minimal, focused, and intense, with a single table setting, a dealer opponent, and a revolving cycle of rounds.
 
-You awaken in a darkest void. Before you stands a table, behind which looms a dark, sinister silhouette — a creature that devours all light. The Dealer. It forces you into a twisted game. Refusal is not an option. The cold metal revolver clinks onto the table...
+## Technology Stack
+- Engine: Godot 4.x
+- Language: GDScript
+- Project type: 3D
+- UI: Godot Control-based UI with responsive anchors for different resolutions
+- Audio: Godot AudioStreamPlayer with smooth transitions for win/lose state music
+- Save data: local persistence using `user://` files
 
-This game inspired by Buckshot Roulette with a twist: you load the chambers yourself, each bullet carrying a unique, ominous curse.
+## Core Gameplay Loop
+1. A round begins with a freshly loaded set of bullets.
+2. The player always starts.
+3. Each turn is one shot with the shared revolver.
+4. The target can be self or the dealer.
+5. The round ends when the revolver is empty or a life total reaches zero.
 
+## Key Mechanics
+- One shared revolver is used by both the player and the dealer.
+- Bullets are a mix of live and blank rounds.
+- Lives are limited; a live shot reduces life by 1, blanks do no damage.
+- Turns strictly alternate: player -> dealer -> player -> dealer.
+- The dealer can choose to shoot the player or themselves.
 
+## Game States
+The project is organized around a state-driven flow:
+- Intro / entry flow
+- Active gameplay round
+- Win state
+- Lose state
+- Return to menu
 
+## UI and Menus
+- Main menu includes play, language selection, coins display, and social buttons.
+- HUD provides minimal in-game feedback (round info, lives, bet).
+- UI is scalable for mobile devices using proper anchors and stretch settings.
 
+## Economy (Lightweight)
+The project includes a simple coin system:
+- Coins persist between sessions using local save files.
+- Bets are placed before a round and resolved after win/loss.
 
-## Rules of Engagement
+## Controls
+- Mouse or touch: select targets and interact with the revolver.
+- Buttons and HUD controls handle menu and round flow.
 
-1. The Dealer agrees to release the subject only if they accumulate a total of 999 dollars (or equivalent) by playing the game designed by the Dealer, effectively "earning" this amount.
+## Art Direction
+- Minimalist, dark environment
+- Focused lighting with a single table scene
+- High-contrast UI elements for clarity
 
-2. The Dealer compensates the subject for every bullet they load into the revolver. Certain bullets with unique or rare properties command particularly high payments, suggesting the Dealer's interest in the bullet's effects.
-
-3. The subject must load the revolver and fire, choosing any target for the shot. However, the Dealer offers higher compensation if the subject shoots themselves.
-
-4. After each trigger pull, all remaining loaded bullets become inert and must be immediately discarded. If the subject fails to rid themselves of these bullets, the Dealer will forcibly terminate the session.
-
-5. The subject maintains full autonomy to load any ammunition available in their inventory, including specially acquired rounds. 
-
-6. The Dealer provides access to a dispensing device (hereafter "The Machine"), from which new ammunition types can be purchased. The Machine is a slot machine with a random set of rewards.
-
-7. Should the subject deplete all ammunition and reach bankruptcy (zero dollars), the Dealer forcibly terminates the session.
+## Credits
+ELDAR STUDIO
 
 ## License
-
 This project is dual-licensed:
-- [CC BY-NC-SA 4.0](./src/assets/LICENSE) for all assets
-- [MIT](./LICENSE) for everything else
+- CC BY-NC-SA 4.0 for all assets
+- MIT for everything else

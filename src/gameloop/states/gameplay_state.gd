@@ -35,6 +35,7 @@ enum RevolverState {
 @export var bet_dialog: BetDialog
 @export var revolver_table_mockup: Node3D
 @export var dealer_revolver_pose: Node3D
+@export var dealer_head: Node3D
 
 var is_first_dealer_apperence: bool = true
 var current_turn: Turn = Turn.PLAYER
@@ -267,13 +268,19 @@ func _dealer_turn() -> void:
 		return
 	choices.hide_labels()
 	revolver_state = RevolverState.BUSY_SHOOT
+	dealer.play_take_revolver()
 	await _tween_revolver_to(_get_dealer_target_transform(), TAKE_DURATION, false)
 	revolver_state = RevolverState.IN_HAND_DEALER
 	await pause_async(_dealer_rng.randf_range(DEALER_HOLD_MIN, DEALER_HOLD_MAX))
 	var dealer_shoots_self := _dealer_choose_self()
 	if dealer_shoots_self:
 		dealer.change_face(Dealer.DealerFace.SAD)
+		dealer.play_shoot_self()
+		revolver_state = RevolverState.BUSY_SHOOT
+		await _tween_revolver_to(_get_dealer_self_shot_transform(), 0.35, false)
 	revolver_state = RevolverState.BUSY_SHOOT
+	player.revolver.show()
+	player.revolver.set_as_top_level(true)
 	dealer.fire()
 	player.revolver.fire()
 	var bullet := player.revolver.get_current_bullet()
@@ -292,6 +299,7 @@ func _dealer_turn() -> void:
 		await state_machine.switch_to(DealerForceOverState)
 		return
 	
+	player.revolver.show()
 	await _finish_shot_return()
 	_consume_bullet(bullet)
 	await pause_async(0.15)
@@ -350,6 +358,7 @@ func _tween_revolver_to(target: Transform3D, duration: float, attach_to_hand: bo
 	tween.tween_property(player.revolver, "global_position", target.origin, duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	tween.parallel().tween_property(player.revolver, "global_rotation", target.basis.get_euler(), duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	await tween.finished
+	player.revolver.global_transform = target
 	if attach_to_hand and has_revolver_hand:
 		player.revolver.set_as_top_level(false)
 		player.revolver.transform = revolver_hand_local
@@ -358,6 +367,19 @@ func _get_dealer_target_transform() -> Transform3D:
 	if dealer_revolver_pose:
 		return dealer_revolver_pose.global_transform
 	return revolver_table_transform
+
+func _get_dealer_self_shot_transform() -> Transform3D:
+	if dealer_head:
+		var head_transform := dealer_head.global_transform
+		var offset := Vector3(0, -0.12, 0.18)
+		var forward := -head_transform.basis.z
+		var up := head_transform.basis.y
+		var right := forward.cross(up).normalized()
+		var basis := Basis(right, up, forward)
+		var target := Transform3D(basis, head_transform.origin + offset)
+		target = target.looking_at(head_transform.origin, up)
+		return target
+	return _get_dealer_target_transform()
 
 func pause_async(duration: float) -> void:
 	await get_tree().create_timer(duration).timeout

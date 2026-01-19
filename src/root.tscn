@@ -363,7 +363,7 @@ libraries = {
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/World3D/GameLoop/StateMachine/IntroState/AnimationPlayer"]
 environment = ExtResource("2_r3r3k")
 
-[node name="GameplayState" type="Node" parent="SubViewportContainer/SubViewport/World3D/GameLoop/StateMachine" node_paths=PackedStringArray("choices", "dealer", "player", "monitor_controller", "session", "cash_audio_player", "player_hud", "bet_dialog", "revolver_table_mockup", "dealer_revolver_pose")]
+[node name="GameplayState" type="Node" parent="SubViewportContainer/SubViewport/World3D/GameLoop/StateMachine" node_paths=PackedStringArray("choices", "dealer", "player", "monitor_controller", "session", "cash_audio_player", "player_hud", "bet_dialog", "revolver_table_mockup", "dealer_revolver_pose", "dealer_head")]
 script = ExtResource("13_eji0w")
 choices = NodePath("../../../Play Room/Table/Choice Labels")
 dealer = NodePath("../../../Play Room/Dealer")
@@ -375,6 +375,7 @@ player_hud = NodePath("../../../../../../Player HUD")
 bet_dialog = NodePath("../../../../../../Player HUD/Bet Dialog")
 revolver_table_mockup = NodePath("../../../Play Room/Table/Revolver Table Mockup")
 dealer_revolver_pose = NodePath("../../../Play Room/Dealer/Revolver")
+dealer_head = NodePath("../../../Play Room/Dealer/dealer2/HG_Dealer/Head")
 metadata/_custom_type_script = "uid://ri6a1tiv3y61"
 
 [node name="Cash Audio Player" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/World3D/GameLoop/StateMachine/GameplayState"]

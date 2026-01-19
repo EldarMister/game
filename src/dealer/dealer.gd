@@ -42,6 +42,18 @@ func quit() -> void:
 func fire() -> void:
 	fire_animation_player.play("fire")
 
+func play_take_revolver() -> void:
+	if animation_player.has_animation("take_revolver"):
+		animation_player.play("take_revolver")
+
+func play_shoot_self() -> void:
+	if animation_player.has_animation("shoot_self"):
+		animation_player.play("shoot_self")
+
+func wait_for_animation(anim_name: String) -> void:
+	if animation_player.is_playing() and animation_player.current_animation == anim_name:
+		await animation_player.animation_finished
+
 func take_damage() -> void:
 	animation_player.play("take_damage")
 
