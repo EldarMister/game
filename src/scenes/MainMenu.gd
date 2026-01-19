@@ -1,6 +1,7 @@
 extends Control
 
 const REWARDED_AD_UNIT_ID := "ca-app-pub-1150942230390878/8701627186"
+const INTERSTITIAL_AD_UNIT_ID := "ca-app-pub-1150942230390878/5403727614"
 
 @onready var coins_label: Label = $CoinsPanel/CoinsLabel
 @onready var play_button: Button = $PlayButton
@@ -8,6 +9,7 @@ const REWARDED_AD_UNIT_ID := "ca-app-pub-1150942230390878/8701627186"
 
 var admob: Object
 var rewarded_unit_id: String = REWARDED_AD_UNIT_ID
+var interstitial_unit_id: String = INTERSTITIAL_AD_UNIT_ID
 
 func _ready() -> void:
 	GameState.coins_changed.connect(_on_coins_changed)
@@ -26,7 +28,9 @@ func _setup_admob() -> void:
 	var test_mode := OS.is_debug_build()
 	admob.initialize(test_mode)
 	rewarded_unit_id = admob.getTestRewardedAdUnit() if test_mode else REWARDED_AD_UNIT_ID
+	interstitial_unit_id = admob.getTestInterstitialAdUnit() if test_mode else INTERSTITIAL_AD_UNIT_ID
 	admob.loadRewarded(rewarded_unit_id)
+	admob.loadInterstitial(interstitial_unit_id)
 
 func _on_play_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/Game.tscn")
@@ -68,7 +72,7 @@ func _update_texts() -> void:
 	if watch_ad_button:
 		watch_ad_button.text = tr("[MENU_WATCH_AD]")
 
-func _on_rewarded(reward_type: String, reward_amount: int) -> void:
+func _on_rewarded(_reward_type: String, reward_amount: int) -> void:
 	var amount := reward_amount if reward_amount > 0 else 50
 	GameState.add_coins(amount)
 

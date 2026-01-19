@@ -8,7 +8,7 @@ signal state_entered(target: GDScript)
 
 var state_mapping: Dictionary[GDScript, State]
 var current_state: State
-var is_processing: bool
+var _is_processing: bool
 
 func _ready() -> void:
 	for child in get_children():
@@ -28,14 +28,14 @@ func _physics_process(delta: float) -> void:
 		current_state.process(delta)
 
 func switch_to(target_state: GDScript) -> void:
-	if is_processing:
+	if _is_processing:
 		return
 	
 	if not state_mapping.has(target_state):
 		printerr("State %s not found in state machine %s" % [target_state.get_global_name(), get_path()])
 		return
 	
-	is_processing = true
+	_is_processing = true
 	processing_started.emit(target_state)
 	
 	if current_state != null:
@@ -53,4 +53,4 @@ func switch_to(target_state: GDScript) -> void:
 		current_state.enter()
 	
 	state_entered.emit(target_state)
-	is_processing = false
+	_is_processing = false

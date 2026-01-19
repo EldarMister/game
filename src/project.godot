@@ -29,6 +29,8 @@ LanguageManager="*res://autoloads/LanguageManager.gd"
 window/size/viewport_width=1390
 window/size/viewport_height=760
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/dpi/allow_hidpi=true
 
 [editor_plugins]
 
