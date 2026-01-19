@@ -4,6 +4,6 @@
 
 [node name="Bullet Button" type="Button"]
 custom_minimum_size = Vector2(440, 140)
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 84
 text = "BULLET: +10$"
 script = ExtResource("1_m8su8")

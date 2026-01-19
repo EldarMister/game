@@ -26,7 +26,7 @@ alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 160)
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 96
 text = "SPIN LEFT"
 script = ExtResource("2_3kg0g")
 action_name = "spin_up"
@@ -40,7 +40,7 @@ mouse_filter = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 160)
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 96
 text = "UNLOAD"
 
 [node name="Space2" type="Control" parent="VBoxContainer/Top Panel"]
@@ -52,7 +52,7 @@ mouse_filter = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 160)
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 96
 text = "SPIN RIGHT"
 script = ExtResource("2_3kg0g")
 action_name = "spin_down"
