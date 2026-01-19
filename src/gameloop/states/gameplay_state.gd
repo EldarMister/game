@@ -8,6 +8,7 @@ const TAKE_DURATION: float = 0.6
 const RETURN_DURATION: float = 0.6
 const DEALER_HOLD_MIN: float = 1.0
 const DEALER_HOLD_MAX: float = 2.0
+const TABLE_REST_OFFSET: float = 0.18
 
 enum Turn {
 	PLAYER = 0,
@@ -43,6 +44,7 @@ var revolver_state: RevolverState = RevolverState.ON_TABLE
 var revolver_hand_transform: Transform3D
 var revolver_hand_local: Transform3D
 var revolver_table_transform: Transform3D
+var table_rest_transform: Transform3D
 var has_revolver_hand: bool = false
 var has_revolver_table: bool = false
 var _dealer_rng := RandomNumberGenerator.new()
@@ -87,7 +89,9 @@ func enter() -> void:
 		revolver_hand_local = player.revolver.transform
 		has_revolver_hand = true
 	if revolver_table_mockup and not has_revolver_table:
-		revolver_table_transform = revolver_table_mockup.global_transform
+		var mockup_revolver := revolver_table_mockup.get_node_or_null("revolver") as Node3D
+		revolver_table_transform = mockup_revolver.global_transform if mockup_revolver else revolver_table_mockup.global_transform
+		_cache_table_rest_transform()
 		has_revolver_table = true
 	_set_revolver_on_table()
 	_dealer_rng.randomize()
@@ -107,6 +111,11 @@ func _start_round_if_needed() -> void:
 	await _start_round()
 
 func _start_round() -> void:
+	var keep_in_hand := current_turn == Turn.PLAYER and (
+		player.is_aiming()
+		or revolver_state == RevolverState.IN_HAND_PLAYER
+		or revolver_state == RevolverState.BUSY_SHOOT
+	)
 	revolver_state = RevolverState.BUSY_RELOAD
 	if session.current_bet <= 0:
 		var bet := await _request_bet()
@@ -126,12 +135,16 @@ func _start_round() -> void:
 		else:
 			live_count += 1
 	if player_hud:
-		player_hud.set_round_text("В раунде: %s холостых и %s боевых" % [blank_count, live_count])
+		player_hud.show_round_info(blank_count, live_count)
 	_set_revolver_for_dealer()
 	dealer_load_shells(shells)
 	current_turn = Turn.PLAYER
-	revolver_state = RevolverState.ON_TABLE
-	_set_revolver_on_table()
+	if keep_in_hand:
+		revolver_state = RevolverState.IN_HAND_PLAYER
+		_set_revolver_in_hand()
+	else:
+		revolver_state = RevolverState.ON_TABLE
+		_set_revolver_on_table()
 
 func dealer_load_shells(shells: Array) -> void:
 	var revolver := player.revolver
@@ -151,7 +164,15 @@ func _set_revolver_on_table() -> void:
 		return
 	player.revolver.show()
 	player.revolver.set_as_top_level(true)
-	player.revolver.global_transform = revolver_table_transform
+	player.revolver.global_transform = table_rest_transform
+
+func _cache_table_rest_transform() -> void:
+	table_rest_transform = revolver_table_transform
+	if choices and choices.dealer_label and choices.you_label:
+		var direction := choices.you_label.global_position - choices.dealer_label.global_position
+		direction.y = 0.0
+		if direction.length() > 0.001:
+			table_rest_transform.origin += direction.normalized() * TABLE_REST_OFFSET
 
 func _set_revolver_in_hand() -> void:
 	if not has_revolver_hand:
@@ -332,7 +353,7 @@ func _consume_bullet(bullet: Bullet) -> void:
 
 func _finish_shot_return() -> void:
 	await _await_revolver_shot()
-	await _tween_revolver_to(revolver_table_transform, RETURN_DURATION, false)
+	await _tween_revolver_to(table_rest_transform, RETURN_DURATION, false)
 	revolver_state = RevolverState.ON_TABLE
 
 func _await_revolver_shot() -> void:
@@ -366,7 +387,7 @@ func _tween_revolver_to(target: Transform3D, duration: float, attach_to_hand: bo
 func _get_dealer_target_transform() -> Transform3D:
 	if dealer_revolver_pose:
 		return dealer_revolver_pose.global_transform
-	return revolver_table_transform
+	return table_rest_transform
 
 func _get_dealer_self_shot_transform() -> Transform3D:
 	if dealer_head:

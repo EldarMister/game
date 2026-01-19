@@ -38,6 +38,9 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bf3um"]
 
+[sub_resource type="Environment" id="Environment_editor"]
+adjustment_enabled = false
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_sc48t"]
 
 [sub_resource type="Animation" id="Animation_ub8w1"]
@@ -122,6 +125,10 @@ mouse_filter = 2
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/World3D"]
 environment = ExtResource("2_r3r3k")
 
+[node name="EditorWorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/World3D"]
+editor_only = true
+environment = SubResource("Environment_editor")
+
 [node name="Play Room" type="Node3D" parent="SubViewportContainer/SubViewport/World3D"]
 
 [node name="Player" parent="SubViewportContainer/SubViewport/World3D/Play Room" node_paths=PackedStringArray("bullets") instance=ExtResource("1_vvh5c")]
@@ -142,6 +149,12 @@ transform = Transform3D(0.902187, 0, 0.431346, 0, 1, 0, -0.431346, 0, 0.902187, 
 
 [node name="Lamp" parent="SubViewportContainer/SubViewport/World3D/Play Room/Table" instance=ExtResource("6_vyht1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176646, 0)
+
+[node name="EditorLight" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/World3D/Play Room"]
+editor_only = true
+light_energy = 2.5
+shadow_enabled = false
+rotation_degrees = Vector3(-50, 30, 0)
 
 [node name="Player Bullets" parent="SubViewportContainer/SubViewport/World3D/Play Room/Table" instance=ExtResource("13_po8fv")]
 transform = Transform3D(0.999636, 0, -0.026997, 0, 1, 0, 0.026997, 0, 0.999636, -1.14361, 4.14031, 0.759733)

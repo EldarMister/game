@@ -38,3 +38,6 @@ key,en,ru,kg
 [STAT_WINNER],Winner,Победитель,Жеңүүчү
 [MENU_PLAY],PLAY,ИГРАТЬ,ОЙНОО
 [MENU_WATCH_AD],WATCH AD / + COINS,СМОТРЕТЬ РЕКЛАМУ / + МОНЕТЫ,ЖАРНАМАНЫ КӨРҮҮ / + МОНЕТА
+
+
+[ROUND_INFO],Round: %s blanks and %s live,В раунде: %s холостых и %s боевых,Раундда: %s бош жана %s ок
