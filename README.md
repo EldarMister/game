@@ -6,24 +6,11 @@
   <i>Refusal is not an option.</i>
 </p>
 
-# Six Ways To Suffer
-[![ITCH](https://img.shields.io/badge/Itch.io-FA5C5C?&logo=itch.io&logoColor=white)](https://100devs.itch.io/six-ways-to-suffer)
-[![Discord](https://img.shields.io/static/v1?label=&labelColor=5865F2&message=Community&color=grey&logo=Discord&logoColor=white&url=https://discord.gg/UHN4AjMw4d)](https://discord.gg/UHN4AjMw4d)
-[![Release](https://github.com/100-Devs-1-Game/Sixwaystosuffer/actions/workflows/cicd.yml/badge.svg)](/.github/workflows/cicd.yml)
-[![Made with Godot](https://img.shields.io/badge/Made%20with-Godot-478CBF?style=flat&logo=godot%20engine&logoColor=white)](https://godotengine.org)
-[![](https://tokei.rs/b1/github/100-Devs-1-Game/Sixwaystosuffer?category=code&style=flat&label=Lines%20Of%20Code)](https://github.com/XAMPPRocky/tokei)
-[![](https://tokei.rs/b1/github/100-Devs-1-Game/Sixwaystosuffer?category=files&style=flat&label=Files)](https://github.com/XAMPPRocky/tokei)
 
 You awaken in a darkest void. Before you stands a table, behind which looms a dark, sinister silhouette — a creature that devours all light. The Dealer. It forces you into a twisted game. Refusal is not an option. The cold metal revolver clinks onto the table...
 
 This game inspired by Buckshot Roulette with a twist: you load the chambers yourself, each bullet carrying a unique, ominous curse.
 
-This project was developed as part of the 100Devs community challenge. Join us on [Discord](https://discord.gg/UHN4AjMw4d).
-
-You can play it on [itch](https://100devs.itch.io/six-ways-to-suffer).
-
-
-https://github.com/user-attachments/assets/f354344e-37d0-4678-b1fe-2af23feea4fc
 
 
 
