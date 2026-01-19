@@ -1,0 +1,152 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctnywjwuiyrka"]
+
+[ext_resource type="Script" uid="uid://dav0wnu6v0hy8" path="res://player/hud/player_hud.gd" id="1_vai5t"]
+[ext_resource type="PackedScene" uid="uid://230joxf853v3" path="res://player/hud/statistic/statistic_panel.tscn" id="2_sabkn"]
+[ext_resource type="PackedScene" uid="uid://c6d3y8lrpbrpo" path="res://player/hud/bet_dialog.tscn" id="3_9sgw7"]
+[ext_resource type="FontFile" uid="uid://br68hnl47e3yy" path="res://assets/fonts/BigScratchBrush-wo50z.ttf" id="3_sabkn"]
+[ext_resource type="Script" uid="uid://dw4mbpipijyv6" path="res://player/hud/components/localized_icon_label.gd" id="4_gt3ux"]
+[ext_resource type="Texture2D" uid="uid://cekog4auc0mfm" path="res://assets/ui/tooltips/rmb_icon.png" id="5_s83ox"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sabkn"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.37254903)
+shadow_size = 5
+
+[node name="Player HUD" type="CanvasLayer"]
+script = ExtResource("1_vai5t")
+
+[node name="Lives HUD" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Player Lives" type="HBoxContainer" parent="Lives HUD"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 216.0
+offset_bottom = 44.0
+theme_override_constants/separation = 8
+
+[node name="Player Label" type="Label" parent="Lives HUD/Player Lives"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.9)
+text = "Player"
+
+[node name="Player Lives Value" type="Label" parent="Lives HUD/Player Lives"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.9)
+text = "3"
+
+[node name="Dealer Lives" type="HBoxContainer" parent="Lives HUD"]
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -216.0
+offset_top = 12.0
+offset_right = -16.0
+offset_bottom = 44.0
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="Dealer Label" type="Label" parent="Lives HUD/Dealer Lives"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.9)
+text = "Dealer"
+
+[node name="Dealer Lives Value" type="Label" parent="Lives HUD/Dealer Lives"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.9)
+text = "3"
+
+[node name="Bet Dialog" parent="." instance=ExtResource("3_9sgw7")]
+
+[node name="Curtain" type="ColorRect" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Round Label" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -300.0
+offset_top = 16.0
+offset_right = 300.0
+offset_bottom = 56.0
+grow_horizontal = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "В раунде: 0 холостых и 0 боевых"
+
+[node name="Statistic Panel" parent="." instance=ExtResource("2_sabkn")]
+unique_name_in_owner = true
+visible = false
+offset_left = -114.5
+offset_top = -126.5
+offset_right = 114.5
+offset_bottom = 126.5
+mouse_filter = 0
+
+[node name="Global Tooltip Container" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -89.5
+offset_top = -56.0
+offset_right = 89.5
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sabkn")
+
+[node name="Container" type="VBoxContainer" parent="Global Tooltip Container"]
+layout_mode = 2
+
+[node name="Single Tooltip Container" type="MarginContainer" parent="Global Tooltip Container/Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Skip Slot Tooltip Label" type="RichTextLabel" parent="Global Tooltip Container/Container/Single Tooltip Container"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_sabkn")
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+script = ExtResource("4_gt3ux")
+icon = ExtResource("5_s83ox")
+locale_key = "[TOOLTIP_SKIP_SLOT]"
+to_upper = true

@@ -1,0 +1,662 @@
+[gd_scene load_steps=36 format=3 uid="uid://dvbqsel4ymb2x"]
+
+[ext_resource type="Script" uid="uid://nofefg6jsoiu" path="res://revolver/revolver.gd" id="1_su5x2"]
+[ext_resource type="PackedScene" uid="uid://cs8wjjhrmln2d" path="res://assets/revolver/revolver.tscn" id="2_su5x2"]
+[ext_resource type="PackedScene" uid="uid://b3jox7dwuvty2" path="res://revolver/components/chamber_position.tscn" id="3_opjbe"]
+[ext_resource type="AudioStream" uid="uid://bwk574ti6htqr" path="res://assets/sfx/shoot_01.ogg" id="4_kwryb"]
+[ext_resource type="PackedScene" uid="uid://6jwia8yl20yt" path="res://revolver/components/current_position_hover.tscn" id="4_qj68n"]
+[ext_resource type="Script" uid="uid://c367lyk8l2w12" path="res://revolver/components/chamber.gd" id="5_knvnr"]
+[ext_resource type="AudioStream" uid="uid://dppngmbga5lp" path="res://assets/sfx/shoot_02.ogg" id="5_lhmy8"]
+[ext_resource type="Script" uid="uid://d177ao6uk1xvs" path="res://revolver/components/chamber_audio_scroll.gd" id="6_3nfdl"]
+[ext_resource type="AudioStream" uid="uid://ciustso8iqyew" path="res://assets/sfx/shoot_03.ogg" id="6_arl7n"]
+[ext_resource type="AudioStream" uid="uid://c6opsqbbwnrg5" path="res://assets/sfx/shoot_04.ogg" id="7_p42ak"]
+[ext_resource type="AudioStream" uid="uid://mm5v73p5a1t5" path="res://assets/sfx/chamber_scrolling_01.ogg" id="8_b0p7j"]
+[ext_resource type="AudioStream" uid="uid://ddouqp43mpc0g" path="res://assets/sfx/chamber_scrolling_02.ogg" id="9_1u2pj"]
+[ext_resource type="AudioStream" uid="uid://cax31nedhq55m" path="res://assets/sfx/chamber_scrolling_03.ogg" id="10_gax4x"]
+[ext_resource type="AudioStream" uid="uid://b7e42x1rnmsnv" path="res://assets/sfx/chamber_scrolling_04.ogg" id="11_5y43m"]
+[ext_resource type="AudioStream" uid="uid://b215nknnn0opu" path="res://assets/sfx/chamber_scrolling_05.ogg" id="12_me2wh"]
+[ext_resource type="AudioStream" uid="uid://ctsy3ce8qyo0l" path="res://assets/sfx/open_drum.ogg" id="13_gax4x"]
+[ext_resource type="AudioStream" uid="uid://ckvimqdf4eoqo" path="res://assets/sfx/close_drum.ogg" id="14_5y43m"]
+[ext_resource type="AudioStream" uid="uid://c3u4424s0t8o1" path="res://assets/sfx/load_01.ogg" id="15_gechb"]
+[ext_resource type="AudioStream" uid="uid://difed6gqnkh83" path="res://assets/sfx/load_02.ogg" id="16_ncoxx"]
+[ext_resource type="AudioStream" uid="uid://cvy61tdrxf01c" path="res://assets/sfx/load_03.ogg" id="17_qj68n"]
+[ext_resource type="AudioStream" uid="uid://b7a3m8ghbty1g" path="res://assets/sfx/load_04.ogg" id="18_knvnr"]
+[ext_resource type="Environment" uid="uid://blb6sexedwx1w" path="res://environment/world_environment.tres" id="19_ncoxx"]
+
+[sub_resource type="Animation" id="Animation_lhmy8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Revolver Hand:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Revolver Hand/revolver/revolver_base_back:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Revolver Hand/revolver/revolver_base_back:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.001, -0.06, 0.275)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Revolver Hand/revolver/revolver_base_trigger:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Revolver Hand/revolver/revolver_base_trigger:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.001, -0.144, 0.144)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Revolver Hand/revolver/revolver_chamber:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.000376823, 0.001409, -0.0121985)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Revolver Hand:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.103854, 0.0988467)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Audio Players/Shoot Audio Player:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Audio Players/Open Drum Audio Player:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Audio Players/Close Drum Audio Player:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Audio Players/Load Audio Player:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("WorldEnvironment:environment:adjustment_brightness")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("WorldEnvironment:environment:adjustment_contrast")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Audio Players/Empty Audio Player:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_8nloj"]
+resource_name = "close_drum"
+length = 0.400003
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Revolver Hand/revolver/revolver_chamber:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333334, 0.1, 0.166667, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.18, 0.001, -0.012), Vector3(-0.22, 0.001, -0.012), Vector3(0.000376823, 0.001409, -0.0121985), Vector3(0.000376823, 0.001409, -0.0121985)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Revolver Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.1, 0.166667, 0.266667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.389208, 0.226893, 0.00698132), Vector3(-0.389208, 0.226893, 0.00698132), Vector3(-0.518363, 0.443314, 0.198968), Vector3(0.261799, -0.279253, 0.261799), Vector3(0.0523599, -0.106465, 0.0785398), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Audio Players/Close Drum Audio Player:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_kwryb"]
+resource_name = "fire"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Revolver Hand:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.2, 0.233333, 0.333333, 0.366666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0.523599, 0, 0), Vector3(0.436332, 0, 0), Vector3(-0.0872665, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Revolver Hand/revolver/revolver_base_back:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.166666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.4784032, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Revolver Hand/revolver/revolver_base_back:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.166666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.001, -0.06, 0.275), Vector3(-0.001, -0.07084302, 0.251541), Vector3(-0.001, -0.06, 0.275)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Revolver Hand/revolver/revolver_base_trigger:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.166666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.4537856, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Revolver Hand/revolver/revolver_base_trigger:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, -0.144, 0.144), Vector3(0.00052124314, -0.11888935, 0.13395137), Vector3(0.001, -0.144, 0.144)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Revolver Hand:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.133333, 0.166667, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.103854, 0.0988467), Vector3(0, -0.104, 0.3), Vector3(0, -0.103854, 0.0988467)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Audio Players/Shoot Audio Player:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("WorldEnvironment:environment:adjustment_brightness")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.133333, 0.166667, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 4.0, 1.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("WorldEnvironment:environment:adjustment_contrast")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.133333, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 2.0, 4.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_gechb"]
+resource_name = "fire_empty"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Revolver Hand:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.2, 0.233333, 0.333333, 0.366666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0.0523599, 0, 0), Vector3(0.0349066, 0, 0), Vector3(-0.0349066, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Revolver Hand/revolver/revolver_base_back:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.166666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.906629, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Revolver Hand/revolver/revolver_base_back:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.166666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.001, -0.06, 0.275), Vector3(-0.00109884, -0.0929664, 0.325846), Vector3(-0.00109884, -0.0738967, 0.349991)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Revolver Hand/revolver/revolver_base_trigger:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.166666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.4537856, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Revolver Hand/revolver/revolver_base_trigger:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.166666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, -0.144, 0.144), Vector3(0.001, -0.119, 0.134), Vector3(0.001, -0.144, 0.144)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Revolver Hand:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.133333, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.103854, 0.0988467), Vector3(0, -0.103854, 0.0988467)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Audio Players/Empty Audio Player:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.13333334),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_su5x2"]
+resource_name = "load"
+length = 0.200003
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Revolver Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.103854, 0.0988467), Vector3(0, -0.103854, 0.0988467)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Revolver Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.1, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.389208, 0.226893, 0.00698132), Vector3(-0.523599, 0.279253, 0.00698132), Vector3(-0.453786, 0.279253, 0.00698132), Vector3(-0.389208, 0.226893, 0.00698132)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Audio Players/Load Audio Player:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_sfe4l"]
+resource_name = "open_drum"
+length = 0.400003
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Revolver Hand/revolver/revolver_chamber:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.000376823, 0.001409, -0.0121985), Vector3(0.000376823, 0.001409, -0.0121985), Vector3(-0.22, 0.001, -0.012), Vector3(-0.18, 0.001, -0.012)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Revolver Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.1, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0523599, -0.106465, 0.0785398), Vector3(0.261799, -0.279253, 0.261799), Vector3(-0.436332, 0.279253, 0.0349066), Vector3(-0.389208, 0.226893, 0.00698132)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Audio Players/Open Drum Audio Player:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_arl7n"]
+_data = {
+&"RESET": SubResource("Animation_lhmy8"),
+&"close_drum": SubResource("Animation_8nloj"),
+&"fire": SubResource("Animation_kwryb"),
+&"fire_empty": SubResource("Animation_gechb"),
+&"load": SubResource("Animation_su5x2"),
+&"open_drum": SubResource("Animation_sfe4l")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sfe4l"]
+random_pitch = 1.1
+random_volume_offset_db = 1.0
+streams_count = 4
+stream_0/stream = ExtResource("4_kwryb")
+stream_1/stream = ExtResource("5_lhmy8")
+stream_2/stream = ExtResource("6_arl7n")
+stream_3/stream = ExtResource("7_p42ak")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cv3dl"]
+random_pitch = 1.1
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("18_knvnr")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pugi4"]
+random_pitch = 1.2
+random_volume_offset_db = 2.0
+streams_count = 5
+stream_0/stream = ExtResource("8_b0p7j")
+stream_1/stream = ExtResource("9_1u2pj")
+stream_2/stream = ExtResource("10_gax4x")
+stream_3/stream = ExtResource("11_5y43m")
+stream_4/stream = ExtResource("12_me2wh")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_me2wh"]
+random_pitch = 1.1
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("13_gax4x")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gechb"]
+random_pitch = 1.1
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("14_5y43m")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3nfdl"]
+random_pitch = 1.1
+random_volume_offset_db = 2.0
+streams_count = 4
+stream_0/stream = ExtResource("15_gechb")
+stream_1/stream = ExtResource("16_ncoxx")
+stream_2/stream = ExtResource("17_qj68n")
+stream_3/stream = ExtResource("18_knvnr")
+
+[node name="Revolver" type="Node3D"]
+script = ExtResource("1_su5x2")
+
+[node name="Revolver Hand" type="Marker3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.103854, 0.0988467)
+gizmo_extents = 0.5
+
+[node name="revolver" parent="Revolver Hand" instance=ExtResource("2_su5x2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.357555, -0.505617)
+
+[node name="revolver_chamber" parent="Revolver Hand/revolver" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000376823, 0.001409, -0.0121985)
+
+[node name="Chamber Position0" parent="Revolver Hand/revolver/revolver_chamber" index="0" instance=ExtResource("3_opjbe")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0561504, 0.0324061, 0.009)
+
+[node name="Chamber Position1" parent="Revolver Hand/revolver/revolver_chamber" index="1" instance=ExtResource("3_opjbe")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0646524, 0.00860831)
+
+[node name="Chamber Position2" parent="Revolver Hand/revolver/revolver_chamber" index="2" instance=ExtResource("3_opjbe")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.0561504, 0.0319494, 0.00860831)
+
+[node name="Chamber Position3" parent="Revolver Hand/revolver/revolver_chamber" index="3" instance=ExtResource("3_opjbe")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.0561504, -0.0328396, 0.00860832)
+
+[node name="Chamber Position4" parent="Revolver Hand/revolver/revolver_chamber" index="4" instance=ExtResource("3_opjbe")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.0650859, 0.009)
+
+[node name="Chamber Position5" parent="Revolver Hand/revolver/revolver_chamber" index="5" instance=ExtResource("3_opjbe")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0561504, -0.0329999, 0.009)
+
+[node name="revolver_base_back" parent="Revolver Hand/revolver" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.001, -0.06, 0.275)
+
+[node name="revolver_base_trigger" parent="Revolver Hand/revolver" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, -0.144, 0.144)
+
+[node name="Current Position Hover" parent="Revolver Hand/revolver" instance=ExtResource("4_qj68n")]
+unique_name_in_owner = true
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 3.59989e-21, 4.37114e-08, -1, -4.37114e-08, -0.237374, 0.0339802, 0.0789238)
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_arl7n")
+}
+
+[node name="Chamber" type="Node" parent="." node_paths=PackedStringArray("chamber", "position_hover", "spin_audio")]
+unique_name_in_owner = true
+script = ExtResource("5_knvnr")
+chamber = NodePath("../Revolver Hand/revolver/revolver_chamber")
+position_hover = NodePath("../Revolver Hand/revolver/Current Position Hover")
+spin_audio = NodePath("../Audio Players/Chamber Scrolling Audio Player")
+metadata/_custom_type_script = "uid://c367lyk8l2w12"
+
+[node name="ChamberAudioScroll" type="Node" parent="Chamber" node_paths=PackedStringArray("chamber", "chamber_audio_player")]
+script = ExtResource("6_3nfdl")
+chamber = NodePath("../../Revolver Hand/revolver/revolver_chamber")
+chamber_audio_player = NodePath("../../Audio Players/Chamber Scrolling Audio Player")
+metadata/_custom_type_script = "uid://d177ao6uk1xvs"
+
+[node name="Audio Players" type="Node" parent="."]
+
+[node name="Shoot Audio Player" type="AudioStreamPlayer" parent="Audio Players"]
+stream = SubResource("AudioStreamRandomizer_sfe4l")
+
+[node name="Empty Audio Player" type="AudioStreamPlayer" parent="Audio Players"]
+stream = SubResource("AudioStreamRandomizer_cv3dl")
+volume_db = 6.0
+pitch_scale = 0.9
+
+[node name="Chamber Scrolling Audio Player" type="AudioStreamPlayer" parent="Audio Players"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_pugi4")
+volume_db = -12.0
+pitch_scale = 1.4
+
+[node name="Open Drum Audio Player" type="AudioStreamPlayer" parent="Audio Players"]
+stream = SubResource("AudioStreamRandomizer_me2wh")
+
+[node name="Close Drum Audio Player" type="AudioStreamPlayer" parent="Audio Players"]
+stream = SubResource("AudioStreamRandomizer_gechb")
+
+[node name="Load Audio Player" type="AudioStreamPlayer" parent="Audio Players"]
+stream = SubResource("AudioStreamRandomizer_3nfdl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("19_ncoxx")
+
+[editable path="Revolver Hand/revolver"]

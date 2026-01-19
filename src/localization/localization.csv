@@ -1,0 +1,40 @@
+key,en,ru,kg
+[TUTOR_TAKE],take,взять,ал
+[TUTOR_GOOD],good,хорошо,жакшы
+[TUTOR_REACH],reach,достичь,жет
+[TUTOR_RESCUE],rescue,спасти,куткар
+[TUTOR_RELOAD],reload,перезарядить,кайра окто
+[TOOLTIP_SKIP_SLOT],Skip slot machine,Пропустить слот-машину,Слот машинаны өткөрүп жибер
+[GAMEPLAY_SURE],sure?,уверен?,ишенесиңби?
+[GAMEPLAY_GOOD],good,хорошо,жакшы
+[GAMEPLAY_DEALER],dealer,крупье,дилер
+[GAMEPLAY_YOU],you,ты,сен
+[GAMEPLAY_SADLY],sadly,увы,өкүнүчтүү
+[GAMEPLAY_CONGRATS],congrats,поздравляем,кубаныч
+[SLOT_WELCOME],Welcome Back,С возвращением,Кайра келдиң
+[SLOT_SURE],Sure?,Уверен?,Ишенесиңби?
+[SLOT_ROLL_PRICE],roll for %s$,крутить за %s$,%s$ үчүн айлантуу
+[SLOT_WAIT],wait,ждать,күт
+[SLOT_CHOOSE],choose,выбрать,танда
+[SLOT_CAPACITY_REACHED],capacity reached,мест нет,орун толду
+[SLOT_NOT_MONEY],not enough money,не хватает денег,акча жетишсиз
+[SLOT_EMPTY],empty,пусто,бош
+[BULLET_FOR_LOAD],for load,за заряд,октоо үчүн
+[BULLET_IF_NOT_LOAD],if not load,если не зарядить,октолбосо
+[BULLET_MARKED],marked bullet,помеченная пуля,белгиленген ок
+[BULLET_DUMMY],dummy bullet,холостая пуля,холостой ок
+[STAT_TITLE],Six ways to suffer,Шесть путей страдания,Азаптын алты жолу
+[STAT_PLAYTIME],Playtime,Время игры,Оюн убактысы
+[STAT_REACHED_WORTH],Reached worth,Достигнуто,Жеткен сумма
+[STAT_ROUND_RECORD],Round record,Рекорд за выстрел,Бир ок учун рекорд
+[STAT_TOTAL_BULLETS],Total bullets,Всего пуль,Бардык октор
+[STAT_TOTAL_SHOTS],Total shots,Всего выстрелов,Бардык атуулар
+[STAT_AIMED_SELF],Aimed self,Выстрелов в себя,Өзүңө аткан
+[STAT_AIMED_DEALER],Aimed dealer,Выстрелов в дилера,Дилерге аткан
+[STAT_ROLL_COUNT],Number of rolls,Количество прокрутов,Айлантуулар саны
+[STAT_MONEY_WASTED],Money spent,Потрачено денег,Сарпталган акча
+[STAT_SELFSHOT],Selfshot,Самострел,Өзүнө атуу
+[STAT_KILLED],Killed by dealer,Убит дилером,Дилер өлтүрдү
+[STAT_WINNER],Winner,Победитель,Жеңүүчү
+[MENU_PLAY],PLAY,ИГРАТЬ,ОЙНОО
+[MENU_WATCH_AD],WATCH AD / + COINS,СМОТРЕТЬ РЕКЛАМУ / + МОНЕТЫ,ЖАРНАМАНЫ КӨРҮҮ / + МОНЕТА

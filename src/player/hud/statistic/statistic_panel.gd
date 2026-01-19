@@ -1,0 +1,45 @@
+class_name StatisticPanel
+extends PanelContainer
+
+signal retry_pressed()
+signal home_pressed()
+
+@onready var playtime_label: StatisticLabel = %"Playtime Label"
+@onready var reached_worth_label: StatisticLabel = %"Reached Worth Label"
+@onready var record_per_shot_label: StatisticLabel = %"Record Per Shot Label"
+@onready var bullets_dropped_label: StatisticLabel = %"Bullets Dropped Label"
+@onready var total_shots_label: StatisticLabel = %"Total Shots Label"
+@onready var self_aimed_label: StatisticLabel = %"Self Aimed Label"
+@onready var dealer_aimed_label: StatisticLabel = %"Dealer Aimed Label"
+@onready var roll_count_label: StatisticLabel = %"Roll Count Label"
+@onready var money_wasted_label: StatisticLabel = %"Money Wasted Label"
+
+@onready var killed_by_dealer: Label = %"Killed by Dealer"
+@onready var selfshot: Label = %Selfshot
+@onready var winner: Label = %Winner
+
+@onready var restart_button: Button = %"Restart Button"
+@onready var home_button: Button = %"Home Button"
+
+func _ready() -> void:
+	restart_button.pressed.connect(func(): retry_pressed.emit())
+	home_button.pressed.connect(func(): home_pressed.emit())
+
+func update(session: GameSession) -> void:
+	playtime_label.content = session.get_playtime_line()
+	reached_worth_label.content = "%s$" % session.total_worth
+	record_per_shot_label.content = "%s$" % session.round_record_worth
+	bullets_dropped_label.content = str(session.dropped_bullets)
+	total_shots_label.content = str(session.total_shots)
+	self_aimed_label.content = str(session.self_aiming_count)
+	dealer_aimed_label.content = str(session.dealer_aiming_count)
+	roll_count_label.content = str(session.slot_machine_rolls)
+	money_wasted_label.content = "%s$" % str(session.worth_spent)
+	
+	match session.game_end_reason:
+		GameSession.Reason.WINNER:
+			winner.show()
+		GameSession.Reason.SELFSHOT:
+			selfshot.show()
+		GameSession.Reason.KILLED:
+			killed_by_dealer.show()

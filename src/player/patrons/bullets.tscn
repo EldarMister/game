@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://dac88b174qeox"]
+
+[ext_resource type="Script" uid="uid://b5jtyoeaafoa2" path="res://player/patrons/player_bullets.gd" id="1_qwfah"]
+[ext_resource type="PackedScene" uid="uid://dgq0j8qfr645a" path="res://player/patrons/bullet_position_hover.tscn" id="2_7ng5a"]
+
+[node name="Patrons" type="Node3D"]
+script = ExtResource("1_qwfah")
+
+[node name="Patron Position Hover" parent="." instance=ExtResource("2_7ng5a")]
+transform = Transform3D(0.99999, 0, 0, 0, 0.999993, 0, 0, 0, 0.999992, -0.0285577, 0.0242002, -0.0838962)
+
+[node name="Patron Position Hover2" parent="." instance=ExtResource("2_7ng5a")]
+transform = Transform3D(0.99999, 0, 0, 0, 0.999993, 0, 0, 0, 0.999992, -0.130186, 0.0242002, 0.00643993)
+
+[node name="Patron Position Hover3" parent="." instance=ExtResource("2_7ng5a")]
+transform = Transform3D(0.965916, 0.258817, 1.13132e-08, 0, -4.37111e-08, 0.999992, 0.258816, -0.965919, -4.22216e-08, 0.103937, -0.0529977, -0.0654206)
+
+[node name="Patron Position Hover4" parent="." instance=ExtResource("2_7ng5a")]
+transform = Transform3D(0.320676, -0.947182, -4.14026e-08, -1.29573e-15, -4.37111e-08, 0.999992, -0.947179, -0.320677, -1.40172e-08, -0.179893, -0.0529977, 0.142283)
+
+[node name="Patron Position Hover5" parent="." instance=ExtResource("2_7ng5a")]
+transform = Transform3D(0.113705, 0.993508, 4.34276e-08, -4.83657e-15, -4.37111e-08, 0.999992, 0.993505, -0.113706, -4.97022e-09, 0.106776, -0.0529977, 0.163352)
+
+[node name="Patron Position Hover6" parent="." instance=ExtResource("2_7ng5a")]
+transform = Transform3D(0.788454, -0.61508, -2.6886e-08, -4.33986e-15, -4.37111e-08, 0.999992, -0.615078, -0.788457, -3.44645e-08, 0.225529, -0.0529977, 0.0503447)
+
+[node name="Patron Position Hover7" parent="." instance=ExtResource("2_7ng5a")]
+transform = Transform3D(0.99999, 0, 0, 0, 0.999993, 0, 0, 0, 0.999992, -0.229569, 0.0242002, 0.35939)
+
+[node name="Patron Position Hover8" parent="." instance=ExtResource("2_7ng5a")]
+transform = Transform3D(0.99999, 0, 0, 0, 0.999993, 0, 0, 0, 0.999992, -0.0795315, 0.0242002, 0.414298)
+
+[node name="Patron Position Hover9" parent="." instance=ExtResource("2_7ng5a")]
+transform = Transform3D(0.99999, 0, 0, 0, 0.999993, 0, 0, 0, 0.999992, -0.250639, 0.0242002, 0.509428)
+
+[node name="Patron Position Hover10" parent="." instance=ExtResource("2_7ng5a")]
+transform = Transform3D(0.977697, -0.209976, -9.17832e-09, -4.45079e-15, -4.37111e-08, 0.999992, -0.209975, -0.9777, -4.27365e-08, 0.041042, -0.0529977, 0.407176)
+
+[node name="Patron Position Hover11" parent="." instance=ExtResource("2_7ng5a")]
+transform = Transform3D(-0.535792, 0.844341, 3.69073e-08, -4.45079e-15, -4.37111e-08, 0.999992, 0.844339, 0.535794, 2.34202e-08, 0.241518, -0.0529977, 0.42186)
+
+[node name="Patron Position Hover12" parent="." instance=ExtResource("2_7ng5a")]
+transform = Transform3D(-0.311652, 0.950189, 4.1534e-08, -5.87152e-15, -4.37111e-08, 0.999992, 0.950186, 0.311653, 1.36228e-08, -0.0662191, -0.0529977, 0.577006)
+
+[node name="Patron Position Hover13" parent="." instance=ExtResource("2_7ng5a")]
+transform = Transform3D(0.407992, 0.912978, 3.99075e-08, -3.92037e-15, -4.37111e-08, 0.999992, 0.912975, -0.407993, -1.78339e-08, 0.20768, -0.0529977, 0.627444)

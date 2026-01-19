@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c76i00ukwlksk"]
+
+[ext_resource type="PackedScene" uid="uid://cnl6cdw6wpno" path="res://assets/furniture/table_01/table_01.gltf" id="1_8n0s3"]
+[ext_resource type="Material" uid="uid://dmd62glk3dd1x" path="res://assets/furniture/table_01/M_table_01.tres" id="2_wenf1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b7w4j"]
+size = Vector3(103.561, 73.4915, 81.5358)
+
+[node name="table_01" instance=ExtResource("1_8n0s3")]
+
+[node name="Aset_interior_furnituretable" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_wenf1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Aset_interior_furnituretable" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Aset_interior_furnituretable/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.490207, 1.26209, -40.2679)
+shape = SubResource("BoxShape3D_b7w4j")

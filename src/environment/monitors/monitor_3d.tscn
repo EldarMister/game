@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://bvuberatoghu0"]
+
+[ext_resource type="PackedScene" uid="uid://cn1xctd7xddt2" path="res://assets/counter/counter_01.tscn" id="1_he7nu"]
+[ext_resource type="Script" uid="uid://ji1rm8ch2jps" path="res://environment/monitors/monitor_3d.gd" id="1_phl4j"]
+[ext_resource type="PackedScene" uid="uid://okag7g8u08rt" path="res://environment/monitors/digital_label_3d.tscn" id="3_e0sc5"]
+[ext_resource type="AudioStream" uid="uid://1lw70cknvwuw" path="res://assets/sfx/clock_tick_01.ogg" id="4_e0sc5"]
+[ext_resource type="AudioStream" uid="uid://34jau7ktu6i1" path="res://assets/sfx/clock_tick_02.ogg" id="5_38we1"]
+
+[sub_resource type="Animation" id="Animation_axbb4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("counter_01/Digital Label3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tick Audio Player:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_phl4j"]
+resource_name = "blinking"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("counter_01/Digital Label3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.533333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tick Audio Player:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wu85g"]
+_data = {
+&"RESET": SubResource("Animation_axbb4"),
+&"blinking": SubResource("Animation_phl4j")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ixvfv"]
+random_pitch = 1.05
+random_volume_offset_db = 3.0
+streams_count = 2
+stream_0/stream = ExtResource("4_e0sc5")
+stream_1/stream = ExtResource("5_38we1")
+
+[node name="Monitor 3D" type="Node3D"]
+script = ExtResource("1_phl4j")
+
+[node name="counter_01" parent="." instance=ExtResource("1_he7nu")]
+
+[node name="Digital Label3D" parent="counter_01" instance=ExtResource("3_e0sc5")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.988704, 0.14988, 0, -0.14988, 0.988704, 0.0178061, 0.158101, 0.134663)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wu85g")
+}
+
+[node name="Tick Audio Player" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ixvfv")
+volume_db = -10.0
+
+[node name="Phrase Change Timer" type="Timer" parent="."]
+one_shot = true
+
+[editable path="counter_01"]
