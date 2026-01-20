@@ -1,10 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://bumc0bj5pcn8u"]
+[gd_scene load_steps=21 format=3 uid="uid://bumc0bj5pcn8u"]
 
 [ext_resource type="Script" uid="uid://bl4d11scuntup" path="res://scenes/MainMenu.gd" id="1_mainmenu"]
+[ext_resource type="Texture2D" uid="uid://ca4rh60wtlet" path="res://AdsButtonENG.png" id="2_ads_en"]
+[ext_resource type="Texture2D" uid="uid://c0gv7387jsxs8" path="res://AdsButtonKG.png" id="2_ads_kg"]
+[ext_resource type="Script" uid="uid://djjn7c8q77la1" path="res://scenes/ads_button_language.gd" id="2_ads_lang"]
+[ext_resource type="Texture2D" uid="uid://db8k6gc3q0hsb" path="res://AdsButtonRU.png" id="2_ads_ru"]
+[ext_resource type="Texture2D" uid="uid://6yqdpu4sshbt" path="res://PlayButtonENG.png" id="2_play_en"]
+[ext_resource type="Texture2D" uid="uid://ck6uccaxnjx86" path="res://PlayButtonKG.png" id="2_play_kg"]
+[ext_resource type="Script" uid="uid://cih2nd6ivo72c" path="res://scenes/play_button_language.gd" id="2_play_lang"]
+[ext_resource type="Texture2D" uid="uid://xexfp0gcabdx" path="res://PlayButtonRU.png" id="2_play_ru"]
 [ext_resource type="Texture2D" uid="uid://dfvbdqx0131f6" path="res://background.png" id="3_8a8k8"]
 [ext_resource type="Texture2D" uid="uid://bfagcksvfjudm" path="res://assets/ui/menu/coin.png" id="3_coin"]
+[ext_resource type="Texture2D" uid="uid://dvbrjosjspps0" path="res://Balance.png" id="4_2nypq"]
 [ext_resource type="Texture2D" uid="uid://ul3anjhcph28" path="res://assets/ui/menu/flag_kg.png" id="4_kg"]
 [ext_resource type="Texture2D" uid="uid://rib6saf06qud" path="res://assets/ui/menu/flag_ru.png" id="5_ru"]
+[ext_resource type="Texture2D" uid="uid://cyuo1kk8d012" path="res://BackgroundBtn.png" id="6_bky6r"]
 [ext_resource type="Texture2D" uid="uid://ds0ov4gh1drm2" path="res://assets/ui/menu/flag_en.png" id="6_en"]
 [ext_resource type="Texture2D" uid="uid://dsvivpnupcfgt" path="res://assets/ui/menu/instagram.png" id="7_insta"]
 [ext_resource type="Texture2D" uid="uid://bgo2ylwdouh6m" path="res://assets/ui/menu/telegram.png" id="8_tg"]
@@ -13,54 +23,6 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_blur"]
 shader = ExtResource("10_blur")
 shader_parameter/blur_strength = 2.5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play"]
-bg_color = Color(0.8, 0.1, 0.12, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-shadow_color = Color(0.9, 0.2, 0.2, 0.6)
-shadow_size = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play_pressed"]
-bg_color = Color(0.6, 0.08, 0.1, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-shadow_color = Color(0.9, 0.2, 0.2, 0.4)
-shadow_size = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play_hover"]
-bg_color = Color(0.9, 0.15, 0.18, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-shadow_color = Color(1, 0.3, 0.3, 0.7)
-shadow_size = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ad"]
-bg_color = Color(0.18, 0.18, 0.18, 0.85)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ad_pressed"]
-bg_color = Color(0.12, 0.12, 0.12, 0.9)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ad_hover"]
-bg_color = Color(0.28, 0.28, 0.28, 0.9)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -97,7 +59,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.55)
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="PlayButton" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 1
 anchors_preset = 8
@@ -112,12 +74,15 @@ offset_bottom = 65.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 56
-theme_override_styles/normal = SubResource("StyleBoxFlat_play")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_play_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_play_hover")
-text = "PLAY"
+texture_normal = ExtResource("2_play_en")
+texture_pressed = ExtResource("2_play_en")
+texture_hover = ExtResource("2_play_en")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("2_play_lang")
+texture_en = ExtResource("2_play_en")
+texture_ru = ExtResource("2_play_ru")
+texture_kg = ExtResource("2_play_kg")
 
 [node name="CoinsPanel" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -137,31 +102,46 @@ texture = ExtResource("3_coin")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="CoinsLabel" type="Label" parent="CoinsPanel"]
+[node name="Balance" type="Sprite2D" parent="CoinsPanel"]
+position = Vector2(105.75, 27.375)
+scale = Vector2(0.18094899, 0.18511452)
+texture = ExtResource("4_2nypq")
+
+[node name="CoinsLabelMargin" type="MarginContainer" parent="CoinsPanel"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+size_flags_horizontal = 3
+theme_override_constants/margin_left = -2
+theme_override_constants/margin_top = 2
+
+[node name="CoinsLabel" type="Label" parent="CoinsPanel/CoinsLabelMargin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.72, 0.3, 1)
 theme_override_font_sizes/font_size = 30
 text = "0"
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WatchAdButton" type="Button" parent="."]
+[node name="AdsButtonEng" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -324.0
-offset_top = 72.0
-offset_right = -24.0
-offset_bottom = 172.0
+offset_left = -309.0
+offset_top = 89.0
+offset_right = -9.0
+offset_bottom = 189.0
 grow_horizontal = 0
 focus_mode = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_ad")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ad_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ad_hover")
-text = "WATCH AD / + COINS"
+texture_normal = ExtResource("2_ads_en")
+texture_pressed = ExtResource("2_ads_en")
+texture_hover = ExtResource("2_ads_en")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("2_ads_lang")
+texture_en = ExtResource("2_ads_en")
+texture_ru = ExtResource("2_ads_ru")
+texture_kg = ExtResource("2_ads_kg")
 
 [node name="LanguagePanel" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -170,6 +150,11 @@ offset_top = 20.0
 offset_right = 264.0
 offset_bottom = 68.0
 theme_override_constants/separation = 12
+
+[node name="BackgroundBtn2" type="Sprite2D" parent="LanguagePanel"]
+position = Vector2(120, 25.000002)
+scale = Vector2(0.17993078, 0.10320781)
+texture = ExtResource("6_bky6r")
 
 [node name="BtnKG" type="TextureButton" parent="LanguagePanel"]
 custom_minimum_size = Vector2(72, 48)
@@ -211,8 +196,13 @@ offset_bottom = -24.0
 theme_override_constants/separation = 16
 alignment = 1
 
+[node name="BackgroundBtn" type="Sprite2D" parent="SocialPanel"]
+position = Vector2(59.500053, 27.00002)
+scale = Vector2(0.08788924, 0.07810333)
+texture = ExtResource("6_bky6r")
+
 [node name="BtnInstagram" type="TextureButton" parent="SocialPanel"]
-custom_minimum_size = Vector2(56, 56)
+custom_minimum_size = Vector2(47, 45)
 layout_mode = 2
 texture_normal = ExtResource("7_insta")
 texture_pressed = ExtResource("7_insta")
@@ -230,7 +220,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="WatchAdButton" to="." method="_on_watch_ad_button_pressed"]
+[connection signal="pressed" from="AdsButtonEng" to="." method="_on_watch_ad_button_pressed"]
 [connection signal="pressed" from="LanguagePanel/BtnKG" to="." method="_on_btn_kg_pressed"]
 [connection signal="pressed" from="LanguagePanel/BtnRU" to="." method="_on_btn_ru_pressed"]
 [connection signal="pressed" from="LanguagePanel/BtnEN" to="." method="_on_btn_en_pressed"]

@@ -3,9 +3,9 @@ extends Control
 const REWARDED_AD_UNIT_ID := "ca-app-pub-1150942230390878/8701627186"
 const INTERSTITIAL_AD_UNIT_ID := "ca-app-pub-1150942230390878/5403727614"
 
-@onready var coins_label: Label = $CoinsPanel/CoinsLabel
-@onready var play_button: Button = $PlayButton
-@onready var watch_ad_button: Button = $WatchAdButton
+@onready var coins_label: Label = $CoinsPanel/CoinsLabelMargin/CoinsLabel
+@onready var play_button: TextureButton = $PlayButton
+@onready var ads_button: TextureButton = $AdsButtonEng
 
 var admob: Object
 var rewarded_unit_id: String = REWARDED_AD_UNIT_ID
@@ -67,10 +67,7 @@ func _on_language_changed(_code: String) -> void:
 	_update_texts()
 
 func _update_texts() -> void:
-	if play_button:
-		play_button.text = tr("[MENU_PLAY]")
-	if watch_ad_button:
-		watch_ad_button.text = tr("[MENU_WATCH_AD]")
+	pass
 
 func _on_rewarded(_reward_type: String, reward_amount: int) -> void:
 	var amount := reward_amount if reward_amount > 0 else 50
