@@ -2,6 +2,10 @@ extends Control
 
 const REWARDED_AD_UNIT_ID := "ca-app-pub-1150942230390878/8701627186"
 const INTERSTITIAL_AD_UNIT_ID := "ca-app-pub-1150942230390878/5403727614"
+const SETTINGS_PATH := "user://settings.cfg"
+const SETTINGS_SECTION := "settings"
+const KEY_LANGUAGE := "language"
+const KEY_LANGUAGE_SET := "language_set"
 
 @onready var coins_label: Label = $CoinsPanel/CoinsLabelMargin/CoinsLabel
 @onready var play_button: TextureButton = $PlayButton
@@ -12,6 +16,9 @@ var rewarded_unit_id: String = REWARDED_AD_UNIT_ID
 var interstitial_unit_id: String = INTERSTITIAL_AD_UNIT_ID
 
 func _ready() -> void:
+	if _needs_language_selection():
+		get_tree().change_scene_to_file("res://scenes/LanguageMenu.tscn")
+		return
 	GameState.coins_changed.connect(_on_coins_changed)
 	_update_coins_label()
 	_update_texts()
@@ -68,6 +75,26 @@ func _on_language_changed(_code: String) -> void:
 
 func _update_texts() -> void:
 	pass
+
+func _needs_language_selection() -> bool:
+	var cfg := ConfigFile.new()
+	if cfg.load(SETTINGS_PATH) == OK:
+		var lang_value := str(cfg.get_value(SETTINGS_SECTION, KEY_LANGUAGE, ""))
+		var lang_set := bool(cfg.get_value(SETTINGS_SECTION, KEY_LANGUAGE_SET, false))
+		if lang_set or not lang_value.is_empty():
+			return false
+		return true
+	if FileAccess.file_exists(LanguageManager.SAVE_PATH):
+		var lang_file := FileAccess.open(LanguageManager.SAVE_PATH, FileAccess.READ)
+		if lang_file:
+			var lang := lang_file.get_line()
+			lang_file.close()
+			if not lang.is_empty():
+				cfg.set_value(SETTINGS_SECTION, KEY_LANGUAGE, lang)
+				cfg.set_value(SETTINGS_SECTION, KEY_LANGUAGE_SET, true)
+				cfg.save(SETTINGS_PATH)
+				return false
+	return true
 
 func _on_rewarded(_reward_type: String, reward_amount: int) -> void:
 	var amount := reward_amount if reward_amount > 0 else 50

@@ -197,8 +197,8 @@ theme_override_constants/separation = 16
 alignment = 1
 
 [node name="BackgroundBtn" type="Sprite2D" parent="SocialPanel"]
-position = Vector2(59.500053, 27.00002)
-scale = Vector2(0.08788924, 0.07810333)
+position = Vector2(61, 27.5)
+scale = Vector2(0.08996536, 0.085076734)
 texture = ExtResource("6_bky6r")
 
 [node name="BtnInstagram" type="TextureButton" parent="SocialPanel"]
