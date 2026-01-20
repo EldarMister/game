@@ -6,6 +6,7 @@ const SETTINGS_PATH := "user://settings.cfg"
 const SETTINGS_SECTION := "settings"
 const KEY_LANGUAGE := "language"
 const KEY_LANGUAGE_SET := "language_set"
+const GAME_SCENE_PATH := "res://scenes/Game.tscn"
 
 @onready var coins_label: Label = $CoinsPanel/CoinsLabelMargin/CoinsLabel
 @onready var play_button: TextureButton = $PlayButton
@@ -24,6 +25,7 @@ func _ready() -> void:
 	_update_texts()
 	LanguageManager.language_changed.connect(_on_language_changed)
 	_setup_admob()
+	ResourceLoader.load_threaded_request(GAME_SCENE_PATH)
 
 func _setup_admob() -> void:
 	if not Engine.has_singleton("DroidAdMob"):
@@ -40,7 +42,13 @@ func _setup_admob() -> void:
 	admob.loadInterstitial(interstitial_unit_id)
 
 func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/Game.tscn")
+	var status := ResourceLoader.load_threaded_get_status(GAME_SCENE_PATH)
+	if status == ResourceLoader.THREAD_LOAD_LOADED:
+		var packed := ResourceLoader.load_threaded_get(GAME_SCENE_PATH)
+		if packed is PackedScene:
+			get_tree().change_scene_to_packed(packed)
+			return
+	get_tree().change_scene_to_file(GAME_SCENE_PATH)
 
 func _on_watch_ad_button_pressed() -> void:
 	if admob and admob.isRewardedLoaded():
@@ -97,7 +105,9 @@ func _needs_language_selection() -> bool:
 	return true
 
 func _on_rewarded(_reward_type: String, reward_amount: int) -> void:
-	var amount := reward_amount if reward_amount > 0 else 50
+	var amount := 50
+	if reward_amount > amount:
+		amount = reward_amount
 	GameState.add_coins(amount)
 
 func _on_rewarded_loaded() -> void:

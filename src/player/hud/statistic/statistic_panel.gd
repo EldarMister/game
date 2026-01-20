@@ -14,12 +14,16 @@ signal home_pressed()
 @onready var roll_count_label: StatisticLabel = %"Roll Count Label"
 @onready var money_wasted_label: StatisticLabel = %"Money Wasted Label"
 
+@onready var title_label: Label = $"VBoxContainer/Title Container/Title Label"
 @onready var killed_by_dealer: Label = %"Killed by Dealer"
 @onready var selfshot: Label = %Selfshot
 @onready var winner: Label = %Winner
 
 @onready var restart_button: Button = %"Restart Button"
 @onready var home_button: Button = %"Home Button"
+
+const TITLE_COLOR_WIN := Color(0.15660001, 0.87, 0.4538501, 1)
+const TITLE_COLOR_LOSE := Color(0.87, 0.15660001, 0.15660001, 1)
 
 func _ready() -> void:
 	restart_button.pressed.connect(func(): retry_pressed.emit())
@@ -35,11 +39,19 @@ func update(session: GameSession) -> void:
 	dealer_aimed_label.content = str(session.dealer_aiming_count)
 	roll_count_label.content = str(session.slot_machine_rolls)
 	money_wasted_label.content = "%s$" % str(session.worth_spent)
-	
+
+	winner.hide()
+	selfshot.hide()
+	killed_by_dealer.hide()
 	match session.game_end_reason:
 		GameSession.Reason.WINNER:
-			winner.show()
+			title_label.text = tr("[STAT_WINNER]")
+			title_label.add_theme_color_override("font_color", TITLE_COLOR_WIN)
 		GameSession.Reason.SELFSHOT:
-			selfshot.show()
+			title_label.text = tr("[STAT_SELFSHOT]")
+			title_label.add_theme_color_override("font_color", TITLE_COLOR_LOSE)
 		GameSession.Reason.KILLED:
-			killed_by_dealer.show()
+			title_label.text = tr("[STAT_KILLED]")
+			title_label.add_theme_color_override("font_color", TITLE_COLOR_LOSE)
+		_:
+			title_label.text = ""

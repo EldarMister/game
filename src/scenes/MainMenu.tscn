@@ -152,7 +152,7 @@ offset_bottom = 68.0
 theme_override_constants/separation = 12
 
 [node name="BackgroundBtn2" type="Sprite2D" parent="LanguagePanel"]
-position = Vector2(120, 25.000002)
+position = Vector2(121, 25)
 scale = Vector2(0.17993078, 0.10320781)
 texture = ExtResource("6_bky6r")
 
